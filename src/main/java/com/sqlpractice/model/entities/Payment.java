@@ -1,78 +1,49 @@
 package com.sqlpractice.model.entities;
 
+import java.io.Serializable;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Set;
 
-import com.sqlpractice.model.entities.enums.OrderStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_order")
-public class Order {
-
+@Table(name = "tb_payment")
+public class Payment implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Instant moment;
-    private Integer orderStatus;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private User client;
-
-    @OneToMany(mappedBy = "id.order")
-    private Set<OrderItem> items = new HashSet<>();
-
-    @OneToOne(mappedBy = "order" , cascade = CascadeType.ALL)
-    private Payment payment;
+    @JsonIgnore
+    @OneToOne
+    @MapsId
+    private Order order;
 
 
-    
-    public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
+    public Payment(Long id, Instant moment) {
         this.id = id;
         this.moment = moment;
-        this.client = client;
-        setOrderStatus(orderStatus);;
     }
 
     public Long getId() {
         return id;
     }
 
-
-
     public Instant getMoment() {
         return moment;
     }
 
-
-
-    public OrderStatus getOrderStatus() {
-        return OrderStatus.valueOf(orderStatus);
+    public void setMoment(Instant moment) {
+        this.moment = moment;
     }
-
-
-    public void setOrderStatus(OrderStatus orderStatus) {
-        if(orderStatus != null){
-            this.orderStatus = orderStatus.getCode();
-        }
-        
-    }
-
-
 
     @Override
     public int hashCode() {
@@ -82,8 +53,6 @@ public class Order {
         return result;
     }
 
-
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -92,7 +61,7 @@ public class Order {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Order other = (Order) obj;
+        Payment other = (Payment) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -102,7 +71,7 @@ public class Order {
     }
 
     
-
+    
 
 
 }

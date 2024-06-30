@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import com.sqlpractice.model.entities.PK.OrderItemPK;
 
-import jakarta.persistence.Embedded;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 @Table(name = "TB_ORDER_ITEM")
 public class OrderItem implements Serializable{
 
-    @Embedded
+    @EmbeddedId
     private OrderItemPK id = new OrderItemPK();
 
     private Integer quantity;

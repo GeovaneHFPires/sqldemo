@@ -17,11 +17,11 @@ public class ProductService{
     private ProductRepository prodRepo;
 
 
-    private List<Product> findAll(){
+    public List<Product> findAll(){
         return prodRepo.findAll();
     }
 
-    private Product findById(Long id){
+    public Product findById(Long id){
         Optional<Product> obj = prodRepo.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }

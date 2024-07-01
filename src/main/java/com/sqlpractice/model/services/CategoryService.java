@@ -17,11 +17,11 @@ public class CategoryService {
     private CategoryRepository catRepo;
 
 
-    private List<Category> findAll(){
+    public List<Category> findAll(){
         return catRepo.findAll();
     }
 
-    private Category findById(Long id){
+    public Category findById(Long id){
         Optional<Category> obj = catRepo.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }

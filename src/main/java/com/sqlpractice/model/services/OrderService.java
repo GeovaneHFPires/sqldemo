@@ -17,11 +17,11 @@ public class OrderService {
     private OrderRepository orderRepo;
 
 
-    private List<Order> findAll(){
+    public List<Order> findAll(){
         return orderRepo.findAll();
     }
 
-    private Order findById(Long id){
+    public Order findById(Long id){
         Optional<Order> obj = orderRepo.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }

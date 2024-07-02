@@ -39,6 +39,9 @@ public class Order {
     @OneToOne(mappedBy = "order" , cascade = CascadeType.ALL)
     private Payment payment;
 
+    public Order(){
+        
+    }
 
     
     public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
@@ -47,6 +50,8 @@ public class Order {
         this.client = client;
         setOrderStatus(orderStatus);;
     }
+
+    
 
     public Long getId() {
         return id;
@@ -72,7 +77,13 @@ public class Order {
         
     }
 
+    public Payment getPayment() {
+		return payment;
+	}
 
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
 
     @Override
     public int hashCode() {

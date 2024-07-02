@@ -27,10 +27,14 @@ public class Payment implements Serializable{
     @MapsId
     private Order order;
 
+    public Payment(){
 
-    public Payment(Long id, Instant moment) {
+    }
+
+    public Payment(Long id, Instant moment, Order order) {
         this.id = id;
         this.moment = moment;
+        this.order = order;
     }
 
     public Long getId() {

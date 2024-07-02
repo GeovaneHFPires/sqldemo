@@ -18,8 +18,11 @@ public class OrderItem implements Serializable{
     private Integer quantity;
     private Double price;
 
+    public OrderItem(){
 
-    public OrderItem(Integer quantity, Double price, Order order, Product product) {
+    }
+
+    public OrderItem(Order order,Product product, Integer quantity, Double price) {
         this.quantity = quantity;
         this.price = price;
         this.id.setOrder(order);

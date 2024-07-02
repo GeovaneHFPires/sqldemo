@@ -2,7 +2,7 @@ package com.sqlpractice.model.entities.enums;
 
 public enum OrderStatus {
 
-    WAITING_PAINMENT(1),
+    WAITING_PAYMENT(1),
     PAID(2),
     SHIPPED(3),
     DELIVERED(4),

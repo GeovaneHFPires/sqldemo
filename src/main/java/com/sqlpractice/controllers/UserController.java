@@ -45,7 +45,7 @@ public class UserController {
             return ResponseEntity.created(uri).body(user);
     }
 
-    @PutMapping(value = "{/id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<User> update(@RequestBody User user, @RequestBody Long id){
         user = service.update(id, user);
         return ResponseEntity.ok().body(user);
